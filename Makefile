@@ -6,7 +6,7 @@
 #    By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/15 13:07:58 by vicdos-s          #+#    #+#              #
-#    Updated: 2026/06/15 15:39:35 by vicdos-s         ###   ########.fr        #
+#    Updated: 2026/06/16 16:59:35 by vicdos-s         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
 SRCS_DIR	= ./srcs
-SRCS		= $(SRCS_DIR)/main.c
+SRCS		= $(SRCS_DIR)/main.c \
+				$(SRCS_DIR)/handlers.c
 
 OBJS		= $(SRCS:.c=.o)
 

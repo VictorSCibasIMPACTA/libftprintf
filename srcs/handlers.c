@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/15 13:03:18 by vicdos-s          #+#    #+#             */
-/*   Updated: 2026/06/16 17:09:58 by vicdos-s         ###   ########.fr       */
+/*   Created: 2026/06/16 16:54:21 by vicdos-s          #+#    #+#             */
+/*   Updated: 2026/06/16 16:57:46 by vicdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "libftprintf.h"
 
-static int (* const handlers[256])(va_list *) = {
-	['c'] = print_char,
-};
-
-int ft_printf(const *format, ...)
+int print_char (va_list *args)
 {
- va_list	args;
- int		count;
+	char	c;
 
- va_start(args, format);
- count = 0;
- while (*format)
- {
-	if (*format == '%' && *(format+1))
-	{
-		format++;
-		count += handlers[(unsigned char)*format](&args);
-	}
- }
-}
-int main(void)
-{
-	ft_putstr_fd("testando 1 2 3\n", 2);
-	printf("Teste da atoi: %d\n",ft_atoi("123456"));
+	c = (char)va_arg(*args, int);
+	return(write(1, &c, 1));
 }
