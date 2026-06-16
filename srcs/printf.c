@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vicdos-s <vicdos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 13:03:18 by vicdos-s          #+#    #+#             */
-/*   Updated: 2026/06/16 17:09:58 by vicdos-s         ###   ########.fr       */
+/*   Updated: 2026/06/16 18:25:13 by vicdos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int (* const handlers[256])(va_list *) = {
 	['c'] = print_char,
 };
 
-int ft_printf(const *format, ...)
+int ft_printf(const char* format, ...)
 {
  va_list	args;
  int		count;
@@ -29,12 +29,13 @@ int ft_printf(const *format, ...)
 	if (*format == '%' && *(format+1))
 	{
 		format++;
+		if ((handlers[(unsigned char)*format]))
 		count += handlers[(unsigned char)*format](&args);
 	}
+	else
+	count += write(1, format, 1);
+	format++;	
  }
-}
-int main(void)
-{
-	ft_putstr_fd("testando 1 2 3\n", 2);
-	printf("Teste da atoi: %d\n",ft_atoi("123456"));
+ va_end(args);
+ return(count);
 }
